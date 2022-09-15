@@ -72,6 +72,8 @@ jobs:
         run: |
           echo $METADATA
           echo $METADATA > temp.json
+          version=`echo $(jq -r 'app.kubernetes.io/version' <<< "$METADATA")`
+          echo $version
 
       - name: get config version from metadata
         if: ${{ steps.check_files.outputs.updated_file != 'none' }}
