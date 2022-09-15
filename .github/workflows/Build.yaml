@@ -73,7 +73,7 @@ jobs:
           echo $METADATA
           newdata=echo $METADATA | sed s:app.kubernetes.io/name:name:g
           newdata=echo $newdata | sed s:app.kubernetes.io/version:version:g
-          ech $newdata
+          echo $newdata
           echo $newdata > temp.json
 
       - name: get config version from metadata
