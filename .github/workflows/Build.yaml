@@ -71,7 +71,10 @@ jobs:
           METADATA: ${{ steps.template-yaml-data.outputs.data }}
         run: |
           echo $METADATA
-          echo $METADATA > temp.json
+          newdata=echo $METADATA | sed s/app.kubernetes.io\/name/name/
+          newdata=echo $newdata | sed s/app.kubernetes.io\/version/version/
+          ech $newdata
+          echo $newdata > temp.json
 
       - name: get config version from metadata
         if: ${{ steps.check_files.outputs.updated_file != 'none' }}
@@ -79,7 +82,7 @@ jobs:
         uses: notiz-dev/github-action-json-property@release
         with:
           path: 'temp.json'
-          prop_path: 'labels.[app.kubernetes.io/version]'
+          prop_path: 'labels.version'
 
       - if: ${{ steps.check_files.outputs.updated_file != 'none' }}
         id: new_version
