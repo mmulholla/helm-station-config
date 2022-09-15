@@ -70,10 +70,9 @@ jobs:
         env:
           METADATA: ${{ steps.template-yaml-data.outputs.data }}
         run: |
-          echo $METADATA
-          newdata=echo $METADATA | sed s:app.kubernetes.io/name:name:g
-          newdata=echo $newdata | sed s:app.kubernetes.io/version:version:g
-          echo $newdata
+          echo metadata: $METADATA
+          newdata=echo $metadata | sed 's:app.kubernetes.io/::g'
+          echo newdata: $newdata
           echo $newdata > temp.json
 
       - name: get config version from metadata
