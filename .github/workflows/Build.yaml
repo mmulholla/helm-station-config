@@ -71,9 +71,8 @@ jobs:
           METADATA: ${{ steps.template-yaml-data.outputs.data }}
         run: |
           echo metadata: $METADATA
-          newdata=echo $METADATA | sed 's:app.kubernetes.io/::g'
-          echo newdata: $newdata
-          echo $newdata > temp.json
+          echo $METADATA | sed 's:app.kubernetes.io/::g'
+          echo $METADATA | sed 's:app.kubernetes.io/::g' > temp.json
 
       - name: get config version from metadata
         if: ${{ steps.check_files.outputs.updated_file != 'none' }}
