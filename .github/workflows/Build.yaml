@@ -72,8 +72,6 @@ jobs:
         run: |
           echo $METADATA
           echo $METADATA > temp.json
-          version=`echo $(jq -r 'app.kubernetes.io/version' <<< "$METADATA")`
-          echo $version
 
       - name: get config version from metadata
         if: ${{ steps.check_files.outputs.updated_file != 'none' }}
@@ -81,7 +79,7 @@ jobs:
         uses: notiz-dev/github-action-json-property@release
         with:
           path: 'temp.json'
-          prop_path: 'labels'
+          prop_path: 'labels.[app.kubernetes.io/version]'
 
       - if: ${{ steps.check_files.outputs.updated_file != 'none' }}
         id: new_version
