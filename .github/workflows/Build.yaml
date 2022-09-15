@@ -71,7 +71,7 @@ jobs:
           METADATA: ${{ steps.template-yaml-data.outputs.data }}
         run: |
           echo metadata: $METADATA
-          newdata=echo $metadata | sed 's:app.kubernetes.io/::g'
+          newdata=echo $METADATA | sed 's:app.kubernetes.io/::g'
           echo newdata: $newdata
           echo $newdata > temp.json
 
