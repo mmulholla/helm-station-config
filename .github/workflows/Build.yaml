@@ -125,7 +125,7 @@ jobs:
           if [ "$to_replace" != "" ]; then
               replace_with=echo "app.kubernetes.io/version: ${{ steps.new_version.outputs.version }}"
           fi
-          sed -i 's|$to_replace|$replace_with|g ${{ steps.check_files.outputs.next_file }}
+          sed -i 's|$to_replace|$replace_with|g' ${{ steps.check_files.outputs.next_file }}
           cat ${{ steps.check_files.outputs.next_file }}
 
 
