@@ -137,7 +137,7 @@ jobs:
         with:
          add: ${{ steps.check_files.outputs.next_file }}
          author_name: mmulholla
-         auther_email: mmulholl@redhat.com
+         author_email: mmulholl@redhat.com
          message: "Update ${{ steps.check_files.outputs.test_phase }} config chart version for Argo CD pipeline testing"
          push: true
 
