@@ -15,6 +15,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
+          token: ${{ secrets.API_TOKEN_GITHUB }}
 
       - name: Get files in push request
         id: files
@@ -138,6 +139,7 @@ jobs:
          add: ${{ steps.check_files.outputs.next_file }}
          author_name: mmulholla
          author_email: mmulholl@redhat.com
+         default_author: github_actor
          message: "Update ${{ steps.check_files.outputs.test_phase }} config chart version for Argo CD pipeline testing"
          push: true
 
